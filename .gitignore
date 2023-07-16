@@ -51,3 +51,4 @@ google-services.json
 /gradlew
 /gradlew.bat
 /settings.gradle
+/app/src/main/java/ru/anbn/gpstracker/StaticVariables.java
