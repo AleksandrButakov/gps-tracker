@@ -190,42 +190,24 @@ public class MainActivity extends AppCompatActivity {
 
         // строка поиска
         if (id == R.id.action_item1) {
-            Intent intent = new Intent(this, SearchActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(this, SearchActivity.class);
+//            startActivity(intent);
         }
 
         // политика конфиденциальности
         if (id == R.id.action_item2) {
             // проверим что есть подключение к сети интернет
-            if (isOnline()) {
-                url = "https://AleksandrButakov.github.io/Pinout/PolicyPrivacy/";
-                Intent intent = new Intent(this, WebViewActivity.class);
-                startActivity(intent);
-            } else {
-                displayToast("Нет подключения к Интернету...");
-            }
+
         }
 
         // оценить приложение
         if (id == R.id.action_item3) {
-            if (isOnline()) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.anbn.pinout"));
-                startActivity(intent);
-            } else {
-                displayToast("Нет подключения к Интернету...");
-            }
+
         }
 
         // о программе
         if (id == R.id.action_item4) {
-            if (isOnline()) {
-                url = "https://AleksandrButakov.github.io/Pinout/About/";
-                Intent intent = new Intent(this, WebViewActivity.class);
-                startActivity(intent);
-            } else {
-                displayToast("Нет подключения к Интернету...");
-            }
+
         }
         return true;
     }
