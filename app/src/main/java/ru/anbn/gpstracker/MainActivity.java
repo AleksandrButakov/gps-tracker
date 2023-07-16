@@ -5,6 +5,7 @@ import static ru.anbn.gpstracker.StaticVariables.*;
 import android.Manifest;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 
 import android.annotation.SuppressLint;
@@ -15,8 +16,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -48,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // ban the night theme
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         // request permission on SEND_SMS
         ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.SEND_SMS},
@@ -166,5 +173,64 @@ public class MainActivity extends AppCompatActivity {
     public void toastView(String text) {
         Toast.makeText(MainActivity.this, text, Toast.LENGTH_LONG).show();
     }
+
+
+
+    // drawing the menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    // обработчик нажатия позиций меню
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        // строка поиска
+        if (id == R.id.action_item1) {
+            Intent intent = new Intent(this, SearchActivity.class);
+            startActivity(intent);
+        }
+
+        // политика конфиденциальности
+        if (id == R.id.action_item2) {
+            // проверим что есть подключение к сети интернет
+            if (isOnline()) {
+                url = "https://AleksandrButakov.github.io/Pinout/PolicyPrivacy/";
+                Intent intent = new Intent(this, WebViewActivity.class);
+                startActivity(intent);
+            } else {
+                displayToast("Нет подключения к Интернету...");
+            }
+        }
+
+        // оценить приложение
+        if (id == R.id.action_item3) {
+            if (isOnline()) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.anbn.pinout"));
+                startActivity(intent);
+            } else {
+                displayToast("Нет подключения к Интернету...");
+            }
+        }
+
+        // о программе
+        if (id == R.id.action_item4) {
+            if (isOnline()) {
+                url = "https://AleksandrButakov.github.io/Pinout/About/";
+                Intent intent = new Intent(this, WebViewActivity.class);
+                startActivity(intent);
+            } else {
+                displayToast("Нет подключения к Интернету...");
+            }
+        }
+        return true;
+    }
+
+
+
 
 }
