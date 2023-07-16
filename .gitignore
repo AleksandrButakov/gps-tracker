@@ -52,3 +52,5 @@ google-services.json
 /gradlew.bat
 /settings.gradle
 /app/src/main/java/ru/anbn/gpstracker/StaticVariables.java
+/app/src/main/ic_launcher-playstore.png
+/temp/
