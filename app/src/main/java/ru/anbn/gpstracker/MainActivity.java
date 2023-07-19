@@ -31,6 +31,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     String SENT_SMS = "SENT_SMS";
@@ -187,14 +189,47 @@ public class MainActivity extends AppCompatActivity {
 
 
         textSerializable = (EditText) findViewById(R.id.textSerializable);
-
-
-
         serializableButton = (Button) findViewById(R.id.serializableButton);
+        serializableButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.startAnimation(animAlpha);
+                // let's check that file data.json exists
 
 
+            }
+        });
+
+
+        List<User> users = null;
 
         deserializableButton = (Button) findViewById(R.id.deserializableButton);
+        deserializableButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.startAnimation(animAlpha);
+                // let's check that file data.json exists
+
+
+                String trackerModel = "M15";
+
+                User user = new User();
+                user.setTrackerModel(trackerModel);
+                textSerializable.setText(user.getTrackerModel());
+
+                users.add(user);
+
+                // performing serialization
+                boolean result = JSONHelper.exportToJSON(this, users);
+                if(result){
+                    Toast.makeText(MainActivity.this, "Данные сохранены", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "Не удалось сохранить данные", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
 
 
     }

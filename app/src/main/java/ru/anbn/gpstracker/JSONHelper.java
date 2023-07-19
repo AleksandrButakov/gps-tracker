@@ -1,6 +1,9 @@
 package ru.anbn.gpstracker;
 
+import static ru.anbn.gpstracker.StaticVariables.FILE_NAME;
+
 import android.content.Context;
+import android.view.View;
 
 import com.google.gson.Gson;
 
@@ -11,9 +14,8 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 class JSONHelper {
-    private static final String FILE_NAME = "data.json";
 
-    static boolean exportToJSON(Context context, List<User> dataList) {
+    static boolean exportToJSON(View.OnClickListener context, List<User> dataList) {
         Gson gson = new Gson();
         DataItems dataItems = new DataItems();
         dataItems.setUsers(dataList);
