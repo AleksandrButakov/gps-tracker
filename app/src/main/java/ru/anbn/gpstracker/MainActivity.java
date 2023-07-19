@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     Button motionSensorOffButton;
     Button b1AlarmClock2H;
     Button b1AlarmClock12H;
+    Button monitoringButton;
 
     int REQUEST_CODE_PERMISSION_SEND_SMS;
 
@@ -158,6 +159,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
+        monitoringButton = (Button) findViewById(R.id.monitoringButton);
+        monitoringButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.startAnimation(animAlpha);
+                if (ActivityCompat.checkSelfPermission(MainActivity.this,
+                        Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, MONITORING_TRACKER, sent_pi, deliver_pi);
+                    // offSecurityButton.setEnabled(false);
+                } else {
+                    toastView("Permission denied...");
+                }
+            }
+        });
 
 
 
