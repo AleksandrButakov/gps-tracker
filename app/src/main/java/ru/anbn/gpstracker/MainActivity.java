@@ -1,13 +1,13 @@
 package ru.anbn.gpstracker;
 
-import static ru.anbn.gpstracker.StaticVariables.*;
+import static ru.anbn.gpstracker.StaticVariables.ALARM_CLOCK_B1_12H;
+import static ru.anbn.gpstracker.StaticVariables.ALARM_CLOCK_B1_2H;
+import static ru.anbn.gpstracker.StaticVariables.MONITORING_TRACKER;
+import static ru.anbn.gpstracker.StaticVariables.OFF_MOTION_SENSOR;
+import static ru.anbn.gpstracker.StaticVariables.ON_MOTION_SENSOR;
+import static ru.anbn.gpstracker.StaticVariables.PHONE_NUMBER_SIGNALLING;
 
 import android.Manifest;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.app.ActivityCompat;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -27,6 +27,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
+
 public class MainActivity extends AppCompatActivity {
 
     String SENT_SMS = "SENT_SMS";
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText address;
     EditText text;
+    EditText textSerializable;
 
     Button sendButton;
     Button motionSensorOnButton;
@@ -46,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     Button b1AlarmClock2H;
     Button b1AlarmClock12H;
     Button monitoringButton;
+    Button serializableButton;
+    Button deserializableButton;
 
     int REQUEST_CODE_PERMISSION_SEND_SMS;
 
@@ -177,6 +184,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
+        textSerializable = (EditText) findViewById(R.id.textSerializable);
+
+
+
+        serializableButton = (Button) findViewById(R.id.serializableButton);
+
+
+
+        deserializableButton = (Button) findViewById(R.id.deserializableButton);
 
 
     }
