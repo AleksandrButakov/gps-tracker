@@ -16,7 +16,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.Menu;
@@ -42,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
     EditText text;
 
     Button sendButton;
-    Button onSecurityButton;
-    Button offSecurityButton;
+    Button motionSensorOnButton;
+    Button motionSensorOffButton;
 
     int REQUEST_CODE_PERMISSION_SEND_SMS;
 
@@ -90,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        onSecurityButton = (Button) findViewById(R.id.onSecurityButton);
-        onSecurityButton.setOnClickListener(new View.OnClickListener() {
+        motionSensorOnButton = (Button) findViewById(R.id.motionSensorOnButton);
+        motionSensorOnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 view.startAnimation(animAlpha);
@@ -106,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        offSecurityButton = (Button) findViewById(R.id.offSecurityButton);
-        offSecurityButton.setOnClickListener(new View.OnClickListener() {
+        motionSensorOffButton = (Button) findViewById(R.id.motionSensorOffButton);
+        motionSensorOffButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 view.startAnimation(animAlpha);
