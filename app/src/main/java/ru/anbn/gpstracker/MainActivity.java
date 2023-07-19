@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     Button sendButton;
     Button motionSensorOnButton;
     Button motionSensorOffButton;
+    Button b1AlarmClock2H;
+    Button b1AlarmClock12H;
 
     int REQUEST_CODE_PERMISSION_SEND_SMS;
 
@@ -97,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, ON_SECURITY, sent_pi, deliver_pi);
+                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, ON_MOTION_SENSOR, sent_pi, deliver_pi);
                     // onSecurityButton.setEnabled(false);
                 } else {
                     toastView("Permission denied...");
@@ -113,13 +115,51 @@ public class MainActivity extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, OFF_SECURITY, sent_pi, deliver_pi);
+                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, OFF_MOTION_SENSOR, sent_pi, deliver_pi);
                     // offSecurityButton.setEnabled(false);
                 } else {
                     toastView("Permission denied...");
                 }
             }
         });
+
+
+
+
+        b1AlarmClock2H = (Button) findViewById(R.id.b1AlarmClock2H);
+        b1AlarmClock2H.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.startAnimation(animAlpha);
+                if (ActivityCompat.checkSelfPermission(MainActivity.this,
+                        Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, ALARM_CLOCK_B1_2H, sent_pi, deliver_pi);
+                    // offSecurityButton.setEnabled(false);
+                } else {
+                    toastView("Permission denied...");
+                }
+            }
+        });
+
+        b1AlarmClock12H = (Button) findViewById(R.id.b1AlarmClock12H);
+        b1AlarmClock12H.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.startAnimation(animAlpha);
+                if (ActivityCompat.checkSelfPermission(MainActivity.this,
+                        Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, ALARM_CLOCK_B1_12H, sent_pi, deliver_pi);
+                    // offSecurityButton.setEnabled(false);
+                } else {
+                    toastView("Permission denied...");
+                }
+            }
+        });
+
+
+
 
     }
 
