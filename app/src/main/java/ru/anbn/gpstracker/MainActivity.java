@@ -31,7 +31,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 
-import java.util.List;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -189,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         textSerializable = (EditText) findViewById(R.id.textSerializable);
+
         serializableButton = (Button) findViewById(R.id.serializableButton);
         serializableButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,12 +202,31 @@ public class MainActivity extends AppCompatActivity {
                 view.startAnimation(animAlpha);
                 // let's check that file data.json exists
 
+                User user = new User();
+                user.setTrackerModel(String.valueOf(textSerializable.getText()));
+                //textSerializable.setText(user.getTrackerModel());
+
+                //Сериализация в файл с помощью класса ObjectOutputStream
+                ObjectOutputStream objectOutputStream = null;
+
+                File filePath = new File(getExternalFilesDir(null), "data.out");
+
+                try {
+                    objectOutputStream = new ObjectOutputStream(
+                            new FileOutputStream(filePath));
+                    objectOutputStream.writeObject(user);
+//                objectOutputStream.writeObject(renat);
+                    objectOutputStream.close();
+
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
 
             }
         });
 
 
-        List<User> users = null;
 
         deserializableButton = (Button) findViewById(R.id.deserializableButton);
         deserializableButton.setOnClickListener(new View.OnClickListener() {
@@ -210,23 +235,25 @@ public class MainActivity extends AppCompatActivity {
                 view.startAnimation(animAlpha);
                 // let's check that file data.json exists
 
+                // Востановление из файла с помощью класса ObjectInputStream
+                ObjectInputStream objectInputStream = null;
 
-                String trackerModel = "M15";
+                File filePath = new File(getExternalFilesDir(null), "data.out");
 
-                User user = new User();
-                user.setTrackerModel(trackerModel);
-                textSerializable.setText(user.getTrackerModel());
+                try {
+                    objectInputStream = new ObjectInputStream(
+                            new FileInputStream(filePath));
+                    User userRestored = (User) objectInputStream.readObject();
+                    objectInputStream.close();
 
-                users.add(user);
+                    textSerializable.setText(userRestored.getTrackerModel());
 
-                // performing serialization
-                boolean result = JSONHelper.exportToJSON(this, users);
-                if(result){
-                    Toast.makeText(MainActivity.this, "Данные сохранены", Toast.LENGTH_LONG).show();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
                 }
-                else{
-                    Toast.makeText(MainActivity.this, "Не удалось сохранить данные", Toast.LENGTH_LONG).show();
-                }
+
 
             }
         });

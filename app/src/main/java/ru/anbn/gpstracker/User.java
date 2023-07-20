@@ -1,6 +1,8 @@
 package ru.anbn.gpstracker;
 
-public class User {
+import java.io.Serializable;
+
+class User implements Serializable {
     private String trackerModel;
     private String password;
     private String numberTrackerSimCard;
