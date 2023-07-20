@@ -203,8 +203,8 @@ public class MainActivity extends AppCompatActivity {
                 // let's check that file data.json exists
 
                 User user = new User();
-                user.setTrackerModel("M15");
-                textSerializable.setText(user.getTrackerModel());
+                user.setTrackerModel(String.valueOf(textSerializable.getText()));
+                //textSerializable.setText(user.getTrackerModel());
 
                 //Сериализация в файл с помощью класса ObjectOutputStream
                 ObjectOutputStream objectOutputStream = null;
