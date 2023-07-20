@@ -17,7 +17,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Environment;
 import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -210,12 +209,11 @@ public class MainActivity extends AppCompatActivity {
                 //Сериализация в файл с помощью класса ObjectOutputStream
                 ObjectOutputStream objectOutputStream = null;
 
-                File path = Environment.getExternalStoragePublicDirectory(Environment.getExternalStorageState());
-                File file = new File(path, "/" + "data.out");
+                File filePath = new File(getExternalFilesDir(null), "data.out");
 
                 try {
                     objectOutputStream = new ObjectOutputStream(
-                            new FileOutputStream(file));
+                            new FileOutputStream(filePath));
                     objectOutputStream.writeObject(user);
 //                objectOutputStream.writeObject(renat);
                     objectOutputStream.close();
@@ -240,12 +238,11 @@ public class MainActivity extends AppCompatActivity {
                 // Востановление из файла с помощью класса ObjectInputStream
                 ObjectInputStream objectInputStream = null;
 
-                File path = Environment.getExternalStoragePublicDirectory(Environment.getExternalStorageState());
-                File file = new File(path, "/" + "data.out");
+                File filePath = new File(getExternalFilesDir(null), "data.out");
 
                 try {
                     objectInputStream = new ObjectInputStream(
-                            new FileInputStream(file));
+                            new FileInputStream(filePath));
                     User userRestored = (User) objectInputStream.readObject();
                     objectInputStream.close();
 
