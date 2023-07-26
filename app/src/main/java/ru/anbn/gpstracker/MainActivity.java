@@ -2,7 +2,8 @@ package ru.anbn.gpstracker;
 
 import static ru.anbn.gpstracker.StaticVariables.ALARM_CLOCK_B1_12H;
 import static ru.anbn.gpstracker.StaticVariables.ALARM_CLOCK_B1_2H;
-import static ru.anbn.gpstracker.StaticVariables.MONITORING_TRACKER;
+import static ru.anbn.gpstracker.StaticVariables.TRACKER_COORDINATES_BUTTON;
+import static ru.anbn.gpstracker.StaticVariables.TRACKER_INFORMATION_BUTTON;
 import static ru.anbn.gpstracker.StaticVariables.OFF_MOTION_SENSOR;
 import static ru.anbn.gpstracker.StaticVariables.ON_MOTION_SENSOR;
 import static ru.anbn.gpstracker.StaticVariables.PHONE_NUMBER_SIGNALLING;
@@ -57,9 +58,10 @@ public class MainActivity extends AppCompatActivity {
     Button motionSensorOffButton;
     Button b1AlarmClock2H;
     Button b1AlarmClock12H;
-    Button monitoringButton;
+    Button trackerInformationButton;
     Button serializableButton;
     Button deserializableButton;
+    Button trackerCoordinatesButton;
 
     int REQUEST_CODE_PERMISSION_SEND_SMS;
 
@@ -139,8 +141,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
         b1AlarmClock2H = (Button) findViewById(R.id.b1AlarmClock2H);
         b1AlarmClock2H.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,16 +174,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-        monitoringButton = (Button) findViewById(R.id.monitoringButton);
-        monitoringButton.setOnClickListener(new View.OnClickListener() {
+        trackerInformationButton = (Button) findViewById(R.id.trackerInformationButton);
+        trackerInformationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 view.startAnimation(animAlpha);
                 if (ActivityCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, MONITORING_TRACKER, sent_pi, deliver_pi);
+                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, TRACKER_INFORMATION_BUTTON, sent_pi, deliver_pi);
                     // offSecurityButton.setEnabled(false);
                 } else {
                     toastView("Permission denied...");
@@ -191,6 +190,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        trackerCoordinatesButton = (Button) findViewById(R.id.trackerCoordinatesButton);
+        trackerCoordinatesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.startAnimation(animAlpha);
+                if (ActivityCompat.checkSelfPermission(MainActivity.this,
+                        Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, TRACKER_COORDINATES_BUTTON, sent_pi, deliver_pi);
+                    // offSecurityButton.setEnabled(false);
+                } else {
+                    toastView("Permission denied...");
+                }
+            }
+        });
 
 
         textSerializable = (EditText) findViewById(R.id.textSerializable);
@@ -225,7 +240,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
 
         deserializableButton = (Button) findViewById(R.id.deserializableButton);
@@ -312,7 +326,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     // drawing the menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -348,8 +361,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-
-
 
 
 }
