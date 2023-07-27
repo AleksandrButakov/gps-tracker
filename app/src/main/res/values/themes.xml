@@ -1,0 +1,84 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.GPSTracker" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+<!--        <item name="colorPrimary">@color/purple_500</item>-->
+        <item name="colorPrimary">@color/base_color</item>
+
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+    </style>
+
+    <style name="ActivityLayoutResults">
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="WebViewBackground">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="MyTextViewStyle">
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <!-- My theme here. -->
+    <style name="Theme.GPSTracker.Button.Orange" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">#F44336</item>
+    </style>
+
+    <!-- My theme here. -->
+    <style name="Theme.GPSTracker.Button.Black" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/black</item>
+    </style>
+
+    <!-- My theme here. -->
+    <style name="Theme.GPSTracker.Button.Green" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/green</item>
+    </style>
+
+</resources>
+
+
+
+
+
+
+
+
+
+<!--<resources xmlns:tools="http://schemas.android.com/tools">-->
+
+<!--    &lt;!&ndash; Base application theme. &ndash;&gt;-->
+<!--    <style name="Theme.GPSTracker" parent="Theme.MaterialComponents.DayNight.DarkActionBar">-->
+
+<!--    &lt;!&ndash; Primary brand color. &ndash;&gt;-->
+<!--        <item name="android:background" >#FFFFFF</item>-->
+<!--        <item name="colorPrimary">@color/green</item>-->
+<!--        <item name="colorPrimaryVariant">@color/green</item>-->
+<!--        <item name="colorOnPrimary">@color/black</item>-->
+
+<!--        &lt;!&ndash; Secondary brand color. &ndash;&gt;-->
+<!--        <item name="colorSecondary">@color/teal_200</item>-->
+<!--        <item name="colorSecondaryVariant">@color/teal_200</item>-->
+<!--        <item name="colorOnSecondary">@color/black</item>-->
+
+<!--        &lt;!&ndash; Status bar color. &ndash;&gt;-->
+<!--        <item name="android:statusBarColor">@color/black</item>-->
+<!--        <item name="android:navigationBarColor">@color/green</item>-->
+<!--        <item name="android:navigationBarDividerColor">@color/green</item>-->
+
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+
+<!--    </style>-->
+
+<!--    &lt;!&ndash; My theme here. &ndash;&gt;-->
+<!--    <style name="Theme.Eritea.Button.Orange" parent="Theme.MaterialComponents.DayNight.DarkActionBar">-->
+<!--        <item name="colorPrimary">@color/orange</item>-->
+<!--    </style>-->
+
+<!--    <style name="Theme.Eritea.Button.Gray" parent="Theme.MaterialComponents.DayNight.DarkActionBar">-->
+<!--        <item name="colorPrimary">@color/gray</item>-->
+<!--    </style>-->
+
+<!--</resources>-->
