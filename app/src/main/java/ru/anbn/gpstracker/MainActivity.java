@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         // add animation on the button
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
 
+        // SEND SMS
         sendButton = (Button) findViewById(R.id.sendButton);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // датчик движения - включить
         motionSensorOnButton = (Button) findViewById(R.id.motionSensorOnButton);
         motionSensorOnButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // датчик движения - отключить
         motionSensorOffButton = (Button) findViewById(R.id.motionSensorOffButton);
         motionSensorOffButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        // будильник В1 - 2 часа
         b1AlarmClock2H = (Button) findViewById(R.id.b1AlarmClock2H);
         b1AlarmClock2H.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // будильник В1 - 12 часов
         b1AlarmClock12H = (Button) findViewById(R.id.b1AlarmClock12H);
         b1AlarmClock12H.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        // получить информацию о трекере ()
         trackerInformationButton = (Button) findViewById(R.id.trackerInformationButton);
         trackerInformationButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        trackerCoordinatesButton = (Button) findViewById(R.id.trackerCoordinatesButton);
+        trackerCoordinatesButton = (Button) findViewById(R.id.trackerCoordinatesBriefButton);
         trackerCoordinatesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
