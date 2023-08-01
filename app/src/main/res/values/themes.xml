@@ -24,7 +24,7 @@
 
     <!-- My theme here. -->
     <style name="Theme.GPSTracker.Button.Orange" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="colorPrimary">#F44336</item>
+        <item name="colorPrimary">#FF5722</item>
     </style>
 
     <!-- My theme here. -->
