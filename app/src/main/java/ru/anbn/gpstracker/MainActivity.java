@@ -2,7 +2,8 @@ package ru.anbn.gpstracker;
 
 import static ru.anbn.gpstracker.StaticVariables.ALARM_CLOCK_B1_12H;
 import static ru.anbn.gpstracker.StaticVariables.ALARM_CLOCK_B1_2H;
-import static ru.anbn.gpstracker.StaticVariables.TRACKER_COORDINATES_BUTTON;
+import static ru.anbn.gpstracker.StaticVariables.TRACKER_COORDINATES_BRIEF_BUTTON;
+import static ru.anbn.gpstracker.StaticVariables.TRACKER_COORDINATES_IN_DETAIL_BUTTON;
 import static ru.anbn.gpstracker.StaticVariables.TRACKER_INFORMATION_BUTTON;
 import static ru.anbn.gpstracker.StaticVariables.OFF_MOTION_SENSOR;
 import static ru.anbn.gpstracker.StaticVariables.ON_MOTION_SENSOR;
@@ -61,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
     Button trackerInformationButton;
     Button serializableButton;
     Button deserializableButton;
-    Button trackerCoordinatesButton;
+    Button trackerCoordinatesBriefButton;
+    Button trackerCoordinatesInDetailButton;
 
     int REQUEST_CODE_PERMISSION_SEND_SMS;
 
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         // add animation on the button
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
 
+        // SEND SMS
         sendButton = (Button) findViewById(R.id.sendButton);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // датчик движения - включить
         motionSensorOnButton = (Button) findViewById(R.id.motionSensorOnButton);
         motionSensorOnButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // датчик движения - отключить
         motionSensorOffButton = (Button) findViewById(R.id.motionSensorOffButton);
         motionSensorOffButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        // будильник В1 - 2 часа
         b1AlarmClock2H = (Button) findViewById(R.id.b1AlarmClock2H);
         b1AlarmClock2H.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // будильник В1 - 12 часов
         b1AlarmClock12H = (Button) findViewById(R.id.b1AlarmClock12H);
         b1AlarmClock12H.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        // получить информацию о трекере ()
         trackerInformationButton = (Button) findViewById(R.id.trackerInformationButton);
         trackerInformationButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,16 +196,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        trackerCoordinatesButton = (Button) findViewById(R.id.trackerCoordinatesButton);
-        trackerCoordinatesButton.setOnClickListener(new View.OnClickListener() {
+        // кнопка: получить координаты кратко
+        trackerCoordinatesBriefButton = (Button) findViewById(R.id.trackerCoordinatesBriefButton);
+        trackerCoordinatesBriefButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 view.startAnimation(animAlpha);
                 if (ActivityCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, TRACKER_COORDINATES_BUTTON, sent_pi, deliver_pi);
+                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, TRACKER_COORDINATES_BRIEF_BUTTON, sent_pi, deliver_pi);
+                    // offSecurityButton.setEnabled(false);
+                } else {
+                    toastView("Permission denied...");
+                }
+            }
+        });
+
+        // кнопка: получить координаты подробно
+        trackerCoordinatesInDetailButton = (Button) findViewById(R.id.trackerCoordinatesInDetailButton);
+        trackerCoordinatesInDetailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.startAnimation(animAlpha);
+                if (ActivityCompat.checkSelfPermission(MainActivity.this,
+                        Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, TRACKER_COORDINATES_IN_DETAIL_BUTTON, sent_pi, deliver_pi);
                     // offSecurityButton.setEnabled(false);
                 } else {
                     toastView("Permission denied...");
@@ -221,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
                 user.setTrackerModel(String.valueOf(textSerializable.getText()));
                 //textSerializable.setText(user.getTrackerModel());
 
-                //Сериализация в файл с помощью класса ObjectOutputStream
+                // Сериализация в файл с помощью класса ObjectOutputStream
                 ObjectOutputStream objectOutputStream = null;
 
                 File filePath = new File(getExternalFilesDir(null), "data.out");
