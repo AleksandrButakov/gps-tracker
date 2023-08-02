@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         // request permission on SEND_SMS
-        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.SEND_SMS},
-                REQUEST_CODE_PERMISSION_SEND_SMS);
+        ActivityCompat.requestPermissions(MainActivity.this,
+                new String[]{Manifest.permission.SEND_SMS}, REQUEST_CODE_PERMISSION_SEND_SMS);
 
         // checking permission
         if (ActivityCompat.checkSelfPermission(this,
@@ -86,8 +86,10 @@ public class MainActivity extends AppCompatActivity {
             toastView("Permission denied...");
         }
 
-        sent_pi = PendingIntent.getBroadcast(MainActivity.this, 0, sent_intent, PendingIntent.FLAG_IMMUTABLE);
-        deliver_pi = PendingIntent.getBroadcast(MainActivity.this, 0, deliver_intent, PendingIntent.FLAG_IMMUTABLE);
+        sent_pi = PendingIntent.getBroadcast(MainActivity.this, 0,
+                sent_intent, PendingIntent.FLAG_IMMUTABLE);
+        deliver_pi = PendingIntent.getBroadcast(MainActivity.this, 0,
+                deliver_intent, PendingIntent.FLAG_IMMUTABLE);
 
         address = (EditText) findViewById(R.id.address);
         text = (EditText) findViewById(R.id.text);
@@ -104,7 +106,8 @@ public class MainActivity extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(address.getText().toString(), null, text.getText().toString(), sent_pi, deliver_pi);
+                    smsManager.sendTextMessage(address.getText().toString(), null,
+                            text.getText().toString(), sent_pi, deliver_pi);
                 } else {
                     toastView("Permission denied...");
                 }
@@ -120,7 +123,8 @@ public class MainActivity extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, ON_MOTION_SENSOR, sent_pi, deliver_pi);
+                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null,
+                            ON_MOTION_SENSOR, sent_pi, deliver_pi);
                     // onSecurityButton.setEnabled(false);
                 } else {
                     toastView("Permission denied...");
@@ -137,7 +141,8 @@ public class MainActivity extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, OFF_MOTION_SENSOR, sent_pi, deliver_pi);
+                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null,
+                            OFF_MOTION_SENSOR, sent_pi, deliver_pi);
                     // offSecurityButton.setEnabled(false);
                 } else {
                     toastView("Permission denied...");
@@ -154,7 +159,8 @@ public class MainActivity extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, ALARM_CLOCK_B1_2H, sent_pi, deliver_pi);
+                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null,
+                            ALARM_CLOCK_B1_2H, sent_pi, deliver_pi);
                     // offSecurityButton.setEnabled(false);
                 } else {
                     toastView("Permission denied...");
@@ -171,7 +177,8 @@ public class MainActivity extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, ALARM_CLOCK_B1_12H, sent_pi, deliver_pi);
+                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null,
+                            ALARM_CLOCK_B1_12H, sent_pi, deliver_pi);
                     // offSecurityButton.setEnabled(false);
                 } else {
                     toastView("Permission denied...");
@@ -188,7 +195,8 @@ public class MainActivity extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, TRACKER_INFORMATION_BUTTON, sent_pi, deliver_pi);
+                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null,
+                            TRACKER_INFORMATION_BUTTON, sent_pi, deliver_pi);
                     // offSecurityButton.setEnabled(false);
                 } else {
                     toastView("Permission denied...");
@@ -205,7 +213,8 @@ public class MainActivity extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, TRACKER_COORDINATES_BRIEF_BUTTON, sent_pi, deliver_pi);
+                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null,
+                            TRACKER_COORDINATES_BRIEF_BUTTON, sent_pi, deliver_pi);
                     // offSecurityButton.setEnabled(false);
                 } else {
                     toastView("Permission denied...");
@@ -214,7 +223,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // кнопка: получить координаты подробно
-        trackerCoordinatesInDetailButton = (Button) findViewById(R.id.trackerCoordinatesInDetailButton);
+        trackerCoordinatesInDetailButton = (Button)
+                findViewById(R.id.trackerCoordinatesInDetailButton);
         trackerCoordinatesInDetailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -222,7 +232,8 @@ public class MainActivity extends AppCompatActivity {
                 if (ActivityCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                     SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null, TRACKER_COORDINATES_IN_DETAIL_BUTTON, sent_pi, deliver_pi);
+                    smsManager.sendTextMessage(PHONE_NUMBER_SIGNALLING, null,
+                            TRACKER_COORDINATES_IN_DETAIL_BUTTON, sent_pi, deliver_pi);
                     // offSecurityButton.setEnabled(false);
                 } else {
                     toastView("Permission denied...");
