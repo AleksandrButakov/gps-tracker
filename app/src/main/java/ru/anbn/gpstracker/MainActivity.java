@@ -50,11 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
     PendingIntent sent_pi, deliver_pi;
 
-    EditText address;
-    EditText text;
     EditText textSerializable;
 
-    Button sendButton;
     Button motionSensorOnButton;
     Button motionSensorOffButton;
     Button b1AlarmClock2H;
@@ -91,28 +88,8 @@ public class MainActivity extends AppCompatActivity {
         deliver_pi = PendingIntent.getBroadcast(MainActivity.this, 0,
                 deliver_intent, PendingIntent.FLAG_IMMUTABLE);
 
-        address = (EditText) findViewById(R.id.address);
-        text = (EditText) findViewById(R.id.text);
-
         // add animation on the button
         final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);
-
-        // SEND SMS
-        sendButton = (Button) findViewById(R.id.sendButton);
-        sendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                view.startAnimation(animAlpha);
-                if (ActivityCompat.checkSelfPermission(MainActivity.this,
-                        Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(address.getText().toString(), null,
-                            text.getText().toString(), sent_pi, deliver_pi);
-                } else {
-                    toastView("Permission denied...");
-                }
-            }
-        });
 
         // датчик движения - включить
         motionSensorOnButton = (Button) findViewById(R.id.motionSensorOnButton);
