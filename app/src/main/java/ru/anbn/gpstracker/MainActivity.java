@@ -2,12 +2,13 @@ package ru.anbn.gpstracker;
 
 import static ru.anbn.gpstracker.StaticVariables.ALARM_CLOCK_B1_12H;
 import static ru.anbn.gpstracker.StaticVariables.ALARM_CLOCK_B1_2H;
-import static ru.anbn.gpstracker.StaticVariables.TRACKER_COORDINATES_BRIEF_BUTTON;
-import static ru.anbn.gpstracker.StaticVariables.TRACKER_COORDINATES_IN_DETAIL_BUTTON;
-import static ru.anbn.gpstracker.StaticVariables.TRACKER_INFORMATION_BUTTON;
+import static ru.anbn.gpstracker.StaticVariables.FILE_NAME;
 import static ru.anbn.gpstracker.StaticVariables.OFF_MOTION_SENSOR;
 import static ru.anbn.gpstracker.StaticVariables.ON_MOTION_SENSOR;
 import static ru.anbn.gpstracker.StaticVariables.PHONE_NUMBER_SIGNALLING;
+import static ru.anbn.gpstracker.StaticVariables.TRACKER_COORDINATES_BRIEF_BUTTON;
+import static ru.anbn.gpstracker.StaticVariables.TRACKER_COORDINATES_IN_DETAIL_BUTTON;
+import static ru.anbn.gpstracker.StaticVariables.TRACKER_INFORMATION_BUTTON;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -18,6 +19,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.Menu;
@@ -80,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         // checking permission
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-            toastView("Permission denied...");
+            displayToast("Permission denied...");
         }
 
         sent_pi = PendingIntent.getBroadcast(MainActivity.this, 0,
@@ -104,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                             ON_MOTION_SENSOR, sent_pi, deliver_pi);
                     // onSecurityButton.setEnabled(false);
                 } else {
-                    toastView("Permission denied...");
+                    displayToast("Permission denied...");
                 }
             }
         });
@@ -122,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                             OFF_MOTION_SENSOR, sent_pi, deliver_pi);
                     // offSecurityButton.setEnabled(false);
                 } else {
-                    toastView("Permission denied...");
+                    displayToast("Permission denied...");
                 }
             }
         });
@@ -140,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                             ALARM_CLOCK_B1_2H, sent_pi, deliver_pi);
                     // offSecurityButton.setEnabled(false);
                 } else {
-                    toastView("Permission denied...");
+                    displayToast("Permission denied...");
                 }
             }
         });
@@ -158,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                             ALARM_CLOCK_B1_12H, sent_pi, deliver_pi);
                     // offSecurityButton.setEnabled(false);
                 } else {
-                    toastView("Permission denied...");
+                    displayToast("Permission denied...");
                 }
             }
         });
@@ -176,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
                             TRACKER_INFORMATION_BUTTON, sent_pi, deliver_pi);
                     // offSecurityButton.setEnabled(false);
                 } else {
-                    toastView("Permission denied...");
+                    displayToast("Permission denied...");
                 }
             }
         });
@@ -194,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                             TRACKER_COORDINATES_BRIEF_BUTTON, sent_pi, deliver_pi);
                     // offSecurityButton.setEnabled(false);
                 } else {
-                    toastView("Permission denied...");
+                    displayToast("Permission denied...");
                 }
             }
         });
@@ -213,11 +216,10 @@ public class MainActivity extends AppCompatActivity {
                             TRACKER_COORDINATES_IN_DETAIL_BUTTON, sent_pi, deliver_pi);
                     // offSecurityButton.setEnabled(false);
                 } else {
-                    toastView("Permission denied...");
+                    displayToast("Permission denied...");
                 }
             }
         });
-
 
         textSerializable = (EditText) findViewById(R.id.textSerializable);
 
@@ -235,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
                 // Сериализация в файл с помощью класса ObjectOutputStream
                 ObjectOutputStream objectOutputStream = null;
 
-                File filePath = new File(getExternalFilesDir(null), "data.out");
+                File filePath = new File(getExternalFilesDir(null), FILE_NAME);
 
                 try {
                     objectOutputStream = new ObjectOutputStream(
@@ -248,10 +250,8 @@ public class MainActivity extends AppCompatActivity {
                     throw new RuntimeException(e);
                 }
 
-
             }
         });
-
 
         deserializableButton = (Button) findViewById(R.id.deserializableButton);
         deserializableButton.setOnClickListener(new View.OnClickListener() {
@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
                 // Востановление из файла с помощью класса ObjectInputStream
                 ObjectInputStream objectInputStream = null;
 
-                File filePath = new File(getExternalFilesDir(null), "data.out");
+                File filePath = new File(getExternalFilesDir(null), FILE_NAME);
 
                 try {
                     objectInputStream = new ObjectInputStream(
@@ -278,12 +278,8 @@ public class MainActivity extends AppCompatActivity {
                 } catch (ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
-
-
             }
         });
-
-
     }
 
     @Override
@@ -306,11 +302,11 @@ public class MainActivity extends AppCompatActivity {
             switch (getResultCode()) {
                 case Activity.RESULT_OK:
                     // Toast.makeText(context, "Sent", Toast.LENGTH_LONG).show();
-                    toastView("Sent");
+                    displayToast("Sent");
                     break;
                 default:
                     // Toast.makeText(context, "Error send", Toast.LENGTH_LONG).show();
-                    toastView("Error send");
+                    displayToast("Error send");
                     break;
             }
         }
@@ -322,20 +318,19 @@ public class MainActivity extends AppCompatActivity {
             switch (getResultCode()) {
                 case Activity.RESULT_OK:
                     //Toast.makeText(context, "Delivered", Toast.LENGTH_LONG).show();
-                    toastView("Delivered");
+                    displayToast("Delivered");
                     break;
                 default:
                     //Toast.makeText(context, "Delivery error", Toast.LENGTH_LONG).show();
-                    toastView("Delivery error");
+                    displayToast("Delivery error");
                     break;
             }
         }
     };
 
-    public void toastView(String text) {
+    public void displayToast(String text) {
         Toast.makeText(MainActivity.this, text, Toast.LENGTH_LONG).show();
     }
-
 
     // drawing the menu
     @Override
@@ -361,16 +356,58 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        // TODO
         // оценить приложение
         if (id == R.id.action_item3) {
+            if (isOnline()) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                //intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.anbn.pinout"));
+                intent.setData(Uri.parse("https://apps.rustore.ru/app/com.anbn.ipcalculatorforandroid?utm_source=rustore_inner"));
+
+                startActivity(intent);
+            } else {
+                displayToast("Нет подключения к Интернету...");
+            }
+
 
         }
+
+
+        /*
+                // оценить приложение
+        if (id == R.id.action_item3) {
+            if (isOnline()) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.anbn.pinout"));
+                startActivity(intent);
+            } else {
+                displayToast("Нет подключения к Интернету...");
+            }
+        }
+         */
+
+
+
+
 
         // о программе
         if (id == R.id.action_item4) {
 
         }
         return true;
+    }
+
+
+    // проверка наличия подключения к интернету
+    protected boolean isOnline() {
+        String cs = Context.CONNECTIVITY_SERVICE;
+        ConnectivityManager cm = (ConnectivityManager)
+                getSystemService(cs);
+        if (cm.getActiveNetworkInfo() == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 
