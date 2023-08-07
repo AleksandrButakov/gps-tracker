@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="24dp"
+            android:text="ПОЛУЧИТЬ ИНФОРМАЦИЯ О ТРЕКЕРЕ:
+"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/b1AlarmClock15M" />
+
+        <Button
+            android:id="@+id/b1AlarmClock15M"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/button_shape"
+            android:text="  12 ЧАСОВ: PIN B1 20:00 19.07.2023 12H K"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:theme="@style/Theme.GPSTracker.Button.Orange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/b1AlarmClock12H"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/motionSensorOnButton"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/button_shape"
+            android:text="  ВКЛЮЧИТЬ PIN D+"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:theme="@style/Theme.GPSTracker.Button.Green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/motionSensorOffButton"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/button_shape"
+            android:text="  ОТКЛЮЧИТЬ PIN D-"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:theme="@style/Theme.GPSTracker.Button.Orange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/motionSensorOnButton"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/b1AlarmClock2H"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/button_shape"
+            android:text="  2 ЧАСА: PIN B1 20:00 19.07.2023 2H K"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:theme="@style/Theme.GPSTracker.Button.Green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/b1AlarmClock12H"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/button_shape"
+            android:text="  12 ЧАСОВ: PIN B1 20:00 19.07.2023 12H K"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/b1AlarmClock2H"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/trackerInformationButton"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/button_shape"
+            android:text="  БАЛАНС: PIN M?"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:theme="@style/Theme.GPSTracker.Button.Green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            tools:ignore="MissingConstraints" />
+
+
+        <Button
+            android:id="@+id/trackerCoordinatesBriefButton"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/button_shape"
+            android:text="  КООРДИНАТЫ КРАТКО: PIN"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trackerInformationButton"
+            tools:ignore="MissingConstraints" />
+
+
+        <Button
+            android:id="@+id/trackerCoordinatesInDetailButton"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/button_shape"
+            android:text="  КООРДИНАТЫ ПОДРОБНО: PIN #"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:theme="@style/Theme.GPSTracker.Button.Orange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trackerCoordinatesBriefButton"
+            tools:ignore="MissingConstraints" />
+
+
+        <EditText
+            android:id="@+id/textSerializable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="12dp"
+            android:hint="Enter your text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trackerCoordinatesInDetailButton"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/serializableButton"
+            android:layout_width="320dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_shape"
+            android:text="выполнить сериализацию"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textSerializable"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/deserializableButton"
+            android:layout_width="320dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/button_shape"
+            android:text="выполнить десериализацию"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:theme="@style/Theme.GPSTracker.Button.Orange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/serializableButton"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:text="ДАТЧИК ДВИЖЕНИЯ:"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="24dp"
+            android:text="НАСТРОЙКИ БУДИЛЬНИКА В1:"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/motionSensorOffButton" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
